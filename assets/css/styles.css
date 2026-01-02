@@ -817,13 +817,21 @@ z-index: var(--z-fixed);
   opacity: 1;
   visibility: visible;
 }
+
 /*=============== FOOTER ===============*/
 .footer{
   background-color: var(--black-color);
-  padding-block: 2rem;
+  padding-block: 4rem 2rem;
+  border-top: 1px solid hsl(0, 0%, 15%);
 }
 
 .footer__container{
+  padding-bottom: 3rem;
+  grid-template-columns: 1fr;
+  row-gap: 3rem;
+}
+
+.footer__content {
   text-align: center;
 }
 
@@ -832,11 +840,52 @@ z-index: var(--z-fixed);
   margin-bottom: 1rem;
 }
 
-.footer__copy{
-  display: block;
-  margin-top: 1rem;
-  font-size: var(--small-font-size);
+.footer__description {
   color: hsl(0, 0%, 60%);
+  margin-bottom: 2rem;
+}
+
+.footer__title {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  row-gap: .75rem;
+}
+
+.footer__link {
+  color: hsl(0, 0%, 60%);
+  transition: color .3s;
+}
+
+.footer__link:hover {
+  color: var(--white-color);
+}
+
+.footer__social {
+  display: flex;
+  justify-content: center;
+  column-gap: 1.5rem;
+}
+
+.footer__social-link {
+  font-size: 1.5rem;
+  color: hsl(0, 0%, 60%);
+  transition: color .3s, transform .3s;
+}
+
+.footer__social-link:hover {
+  color: var(--white-color);
+  transform: translateY(-.25rem);
+}
+
+.footer__copy{
+  text-align: center;
+  font-size: var(--small-font-size);
+  color: hsl(0, 0%, 40%);
 }
 
 /*=============== BREAKPOINTS ===============*/
@@ -891,6 +940,20 @@ z-index: var(--z-fixed);
 
   .services__button {
     margin-top: 3rem; /* Restore margin for desktop */
+  }
+
+  .footer__container {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: start;
+  }
+  .footer__content {
+    text-align: left;
+  }
+  .footer__logo {
+    justify-content: flex-start;
+  }
+  .footer__social {
+    justify-content: flex-start;
   }
 }
 
