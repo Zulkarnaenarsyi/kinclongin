@@ -746,6 +746,12 @@ z-index: var(--z-fixed);
   color: var(--black-color);
 }
 
+.contact__message {
+  text-align: center;
+  font-size: var(--small-font-size);
+  margin-bottom: 1.5rem;
+}
+
 /*=============== SCROLL UP ===============*/
 .scrollup {
   position: fixed;

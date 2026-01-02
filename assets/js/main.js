@@ -203,6 +203,45 @@ if (contactSection) {
     contactObserver.observe(contactSection);
 }
 
+/*=============== EMAIL VALIDATION ===============*/
+const contactForm = document.getElementById('contact-form'),
+      contactEmail = document.getElementById('contact-email'),
+      contactMessage = document.getElementById('contact-message');
+
+const sendEmail = (e) => {
+    e.preventDefault();
+
+    // Check if the field has a value and if the email is valid
+    if (contactEmail.value === '' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail.value)) {
+        // Show error message
+        contactMessage.textContent = 'Email tidak valid ❌';
+        contactMessage.style.color = 'hsl(0, 100%, 60%)'; // Red color
+    } else {
+        // Ganti 'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', dan 'YOUR_PUBLIC_KEY' dengan milik Anda
+        emailjs.sendForm('service_qnc99vw', 'template_ac0kgs7', '#contact-form', 'WUJcHYF31alugbfEv')
+            .then(() => {
+                // Show success message
+                contactMessage.textContent = 'Pesan berhasil terkirim ✅';
+                contactMessage.style.color = 'var(--green-color)';
+
+                // Clear the form fields
+                contactForm.reset();
+
+                // Remove the message after five seconds
+                setTimeout(() => {
+                    contactMessage.textContent = '';
+                }, 5000);
+            }, (error) => {
+                // Show error message
+                contactMessage.textContent = 'Gagal mengirim pesan ❌';
+                contactMessage.style.color = 'hsl(0, 100%, 60%)'; // Red color
+                console.log('FAILED...', error);
+            });
+    }
+};
+
+contactForm.addEventListener('submit', sendEmail);
+
 /*=============== ADD BLUR HEADER ===============*/
 const blurHeader = () =>{
     const header = document.getElementById('header')

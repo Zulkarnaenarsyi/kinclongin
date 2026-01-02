@@ -324,12 +324,13 @@
                   </p>
                </div>
                <div class="contact__content-form">
-                  <form action="" class="contact__form">
+                  <form action="" class="contact__form" id="contact-form">
                      <div class="contact__form-group">
-                        <input type="text" placeholder="Nama Anda" class="contact__input">
-                        <input type="email" placeholder="Email Anda" class="contact__input">
+                        <input type="text" name="user_name" placeholder="Nama Anda" class="contact__input" required>
+                        <input type="email" name="user_email" placeholder="Email Anda" class="contact__input" id="contact-email" required>
                      </div>
-                     <textarea placeholder="Pesan Anda" class="contact__input contact__textarea"></textarea>
+                     <textarea name="user_message" placeholder="Pesan Anda" class="contact__input contact__textarea" required></textarea>
+                     <p class="contact__message" id="contact-message"></p>
                      <button type="submit" class="button contact__button">Kirim Pesan</button>
                   </form>
                </div>
@@ -390,6 +391,9 @@
 
       <!--=============== SWIPER JS ===============-->
       <script src="assets/js/swiper-bundle.min.js"></script>
+
+      <!--=============== EMAIL JS ===============-->
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
       <!--=============== GLIGHTBOX JS ===============-->
       <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
