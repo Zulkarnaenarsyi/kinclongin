@@ -18,7 +18,7 @@ if(navClose){
 }
 
 /*=============== SMOOTH SCROLL & REMOVE MENU MOBILE ===============*/
-const scrollLinks = document.querySelectorAll('.nav__link, .home__button, .about__button, .services__button, .gallery__button, .nav__logo');
+const scrollLinks = document.querySelectorAll('.nav__link, .home__button, .about__button, .services__button, .gallery__button, .nav__logo, .scrollup');
 
 const smoothScrollAction = (e) =>{
     e.preventDefault();
@@ -48,12 +48,18 @@ const syncThemeColor = (swiper) => {
     const activeSlide = swiper.slides[swiper.activeIndex];
     const colorClass = Array.from(activeSlide.classList).find(cls => cls.startsWith('car__'));
 
+    // Hapus semua class warna yang mungkin sudah ada di body
+    document.body.classList.remove('active-yellow', 'active-green', 'active-blue');
+
     if (colorClass) {
         const colorName = colorClass.split('__')[1]; // 'yellow', 'green', 'blue'
         const colorVar = `var(--${colorName}-color)`;
 
         // Update the global active color variable. This will affect all elements using --active-color.
         document.documentElement.style.setProperty('--active-color', colorVar);
+
+        // Tambahkan class yang sesuai dengan slide yang aktif ke body
+        document.body.classList.add(`active-${colorName}`);
     }
 }
 
@@ -205,6 +211,20 @@ const blurHeader = () =>{
                        : header.classList.remove('blur-header')
 }
 window.addEventListener('scroll', blurHeader)
+
+/*=============== SHOW SCROLL UP ===============*/
+const scrollUp = () =>{
+    const scrollUp = document.getElementById('scroll-up')
+    // Show the button when reaching near the bottom of the page
+    const isNearBottom = (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 150;
+
+    if(isNearBottom){
+        scrollUp.classList.add('show-scroll')
+    } else {
+        scrollUp.classList.remove('show-scroll')
+    }
+}
+window.addEventListener('scroll', scrollUp)
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
 const sections = document.querySelectorAll('section[id]')

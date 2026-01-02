@@ -342,7 +342,7 @@ z-index: var(--z-fixed);
 
 .home__social-border{
   width: 0;
-  height: 88px;
+  height: 32px;
   background-color: var(--white-color);
   margin-bottom: .75rem;
 }
@@ -544,6 +544,7 @@ z-index: var(--z-fixed);
   text-align: center;
   background-color: var(--black-color);
   padding-block: 5rem;
+  position: relative;
 }
 
 .services__container {
@@ -620,6 +621,11 @@ z-index: var(--z-fixed);
   transition: transform .4s;
 }
 
+.services__button:hover i,
+.gallery__button:hover i {
+  transform: translateX(.5rem);
+}
+
 /*=============== GALLERY ===============*/
 .gallery{
   display: flex;
@@ -629,6 +635,7 @@ z-index: var(--z-fixed);
   text-align: center;
   background-color: var(--black-color);
   min-height: 100vh;
+  position: relative;
 }
 
 .gallery__container{
@@ -683,6 +690,7 @@ z-index: var(--z-fixed);
   background-color: var(--black-color);
   padding-block: 3rem;
   min-height: 100vh;
+  position: relative;
 }
 
 .contact__container{
@@ -738,6 +746,77 @@ z-index: var(--z-fixed);
   color: var(--black-color);
 }
 
+/*=============== SCROLL UP ===============*/
+.scrollup {
+  position: fixed;
+  right: 1rem;
+  bottom: -50%; /* Hidden by default */
+  background-color: var(--white-color);
+  padding: .6rem;
+  border-radius: .5rem;
+  display: inline-flex;
+  z-index: var(--z-fixed);
+  transition: bottom .4s, transform .4s, background-color .4s;
+}
+
+.scrollup:hover {
+  transform: translateY(-.25rem);
+}
+
+.scrollup i {
+  font-size: 1.25rem;
+  color: var(--black-color);
+}
+
+/* Show Scroll Up */
+.show-scroll {
+  bottom: 3rem;
+}
+
+/*=============== WHATSAPP BUTTON ===============*/
+.whatsapp-button {
+  position: fixed;
+  left: 1rem;
+  bottom: 5rem;
+  background-color: #25D366; /* WhatsApp Green */
+  padding: .6rem;
+  border-radius: 50%;
+  display: inline-flex;
+  z-index: var(--z-fixed);
+  transition: transform .4s;
+  position: relative; /* Needed for tooltip positioning */
+}
+
+.whatsapp-button:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-button i {
+  font-size: 1.3rem;
+  color: var(--white-color);
+}
+
+.whatsapp-button__tooltip {
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--black-color);
+  color: var(--white-color);
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+  white-space: nowrap;
+  font-size: var(--small-font-size);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s;
+  pointer-events: none;
+}
+
+.whatsapp-button:hover .whatsapp-button__tooltip {
+  opacity: 1;
+  visibility: visible;
+}
 /*=============== FOOTER ===============*/
 .footer{
   background-color: var(--black-color);
@@ -762,7 +841,7 @@ z-index: var(--z-fixed);
 
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
-@media screen and (max-width: 330px){
+@media screen and (max-width: 360px){
   .container{
     margin-inline: 1rem;
   }
@@ -994,6 +1073,25 @@ z-index: var(--z-fixed);
 
   .contact__content-data {
     text-align: initial;
+    /* Pindahkan deskripsi ke kolom kanan (latar hitam) */
+    order: 2;
+  }
+
+  .contact__form {
+    /* Pindahkan form ke kolom kiri (latar aktif) */
+    order: 1;
+  }
+}
+
+/* For mobile color correction */
+@media screen and (max-width: 1149px) {
+  .active-yellow .contact__description {
+    color: var(--black-color);
+  }
+
+  /* Hide WhatsApp tooltip on mobile to prevent layout issues */
+  .whatsapp-button__tooltip {
+    display: none;
   }
 }
 
@@ -1011,9 +1109,6 @@ z-index: var(--z-fixed);
   }
   .home__info{
     padding-bottom: 3rem;
-  }
-  .home__social{
-    bottom: 4.5rem;
   }
 }
 
